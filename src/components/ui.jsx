@@ -1,5 +1,6 @@
 // Komponen UI bersama — jangan diubah oleh agen layar; dipelihara oleh arsitek.
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 /* ---------- Ikon navigasi & umum (stroke 1.8) ---------- */
 const I = (path, extra = null) => (
@@ -34,13 +35,15 @@ export function Sheet({ open, onClose, children }) {
   }, [open, onClose])
 
   if (!open) return null
-  return (
+  // Portal ke body: elemen fixed tidak boleh terperangkap containing block layar
+  return createPortal(
     <div className="sheet-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="sheet" role="dialog" aria-modal="true">
         <div className="sheet-handle" />
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

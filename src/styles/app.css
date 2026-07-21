@@ -80,7 +80,9 @@ img, svg { display: block; max-width: 100%; }
   min-height: 100dvh;
   padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 16px);
 }
-.screen { padding: 18px 18px 8px; animation: fadeUp 0.25s ease both; }
+/* Penting: container layar dianimasikan opacity SAJA — transform (walau
+   identitas) menjadikannya containing block bagi elemen fixed di dalamnya. */
+.screen { padding: 18px 18px 8px; animation: fadeIn 0.25s ease both; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -192,6 +194,9 @@ img, svg { display: block; max-width: 100%; }
 .nav-item svg { width: 23px; height: 23px; }
 .nav-item.active { color: var(--primary-deep); }
 
+/* Ikon di baris & tombol selalu berukuran wajar */
+.row svg, .btn svg { width: 20px; height: 20px; flex: none; }
+
 /* ---------- Daftar & baris latihan ---------- */
 .list { display: flex; flex-direction: column; }
 .row {
@@ -283,7 +288,7 @@ input[type="range"] { width: 100%; accent-color: var(--primary); height: 32px; }
   background: var(--bg); overflow-y: auto;
   padding: calc(12px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));
   max-width: 480px; margin: 0 auto;
-  animation: fadeUp 0.22s ease both;
+  animation: fadeIn 0.22s ease both;
 }
 .session-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 
