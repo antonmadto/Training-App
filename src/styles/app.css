@@ -194,8 +194,23 @@ img, svg { display: block; max-width: 100%; }
 .nav-item svg { width: 23px; height: 23px; }
 .nav-item.active { color: var(--primary-deep); }
 
-/* Ikon di baris & tombol selalu berukuran wajar */
-.row svg, .btn svg { width: 20px; height: 20px; flex: none; }
+/* Ikon di baris & tombol selalu berukuran wajar (kecuali ilustrasi gerakan) */
+.nav-item svg, .btn svg,
+.row > svg:not(.ex-figure) { width: 20px; height: 20px; flex: none; }
+
+/* Ilustrasi gerakan */
+.ex-figure {
+  width: 100%; height: auto; display: block;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+}
+.ex-figure-sm { max-width: 132px; }
+.ex-thumb {
+  width: 56px; height: 40px; flex: none;
+  border-radius: 10px; background: var(--surface-2);
+  border: 1px solid var(--line);
+}
 
 /* ---------- Daftar & baris latihan ---------- */
 .list { display: flex; flex-direction: column; }

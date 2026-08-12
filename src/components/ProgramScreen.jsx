@@ -5,6 +5,8 @@ import { weekNumber, tierForWeek, templateForDate, resolveTemplate } from '../li
 import { WEEKDAYS_ID, addDays, weekdayIndex } from '../lib/dates.js'
 import { TIER_INFO, PAIN_RULES } from '../data/program.js'
 import { EXERCISES, getExercise } from '../data/exercises.js'
+import ExerciseFigure from './ExerciseFigure.jsx'
+import { hasIllustration } from '../data/illustrations-index.js'
 
 const CATEGORY_ORDER = ['pemanasan', 'kekuatan', 'core', 'jalan', 'pendinginan']
 const CATEGORY_LABEL = { pemanasan: 'Pemanasan', kekuatan: 'Kekuatan', core: 'Core', jalan: 'Jalan', pendinginan: 'Pendinginan' }
@@ -107,6 +109,7 @@ export default function ProgramScreen() {
                   style={{ width: '100%', textAlign: 'left' }}
                   onClick={() => setOpenExerciseId(ex.id)}
                 >
+                  {hasIllustration(ex.id) && <ExerciseFigure id={ex.id} className="ex-thumb" />}
                   <div className="row-main">
                     <div className="row-title">{ex.nama}</div>
                     <div className="row-sub">{ex.target}</div>
@@ -154,6 +157,9 @@ export default function ProgramScreen() {
         {selectedExercise && (
           <>
             <h2>{selectedExercise.nama}</h2>
+            {hasIllustration(selectedExercise.id) && (
+              <ExerciseFigure id={selectedExercise.id} className="mb-2" style={{ maxWidth: 220, margin: '0 auto 12px' }} />
+            )}
             <div className="flex mb-2" style={{ flexWrap: 'wrap', gap: 6 }}>
               <span className="chip">{EQUIPMENT_LABEL[selectedExercise.equipment]}</span>
               <span className="chip">{CATEGORY_LABEL[selectedExercise.kategori]}</span>

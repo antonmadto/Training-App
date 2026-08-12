@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useApp } from '../App.jsx'
 import { Sheet, ProgressBar } from './ui.jsx'
+import ExerciseFigure from './ExerciseFigure.jsx'
+import { hasIllustration } from '../data/illustrations-index.js'
 
 // Jumlah "set" sebuah item (item berbasis waktu dihitung 1 set)
 const setCount = (it) => (it.waktu ? 1 : (it.set || 1))
@@ -170,6 +172,9 @@ export default function SessionPlayer({ plan, onClose, onDone }) {
 
                   {terbuka && (
                     <div className="mb-2" style={{ paddingLeft: 46 }}>
+                      {hasIllustration(ex.id) && (
+                        <ExerciseFigure id={ex.id} className="ex-figure-sm mt-1" />
+                      )}
                       {ex.cues?.length > 0 && (
                         <ul style={{ paddingLeft: 18, margin: '4px 0' }}>
                           {ex.cues.map((c, ci) => <li key={ci} className="small">{c}</li>)}
